@@ -1,1 +1,52 @@
-hellow word
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Selamat Datang</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+      background: linear-gradient(to right, #f9f9f9, #e0f7fa);
+    }
+    .greeting-box {
+      display: inline-block;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .greeting-box h1 {
+      color: #00796b;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    .greeting-box p {
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="greeting-box">
+    <h1 id="greeting">Halo!</h1>
+    <p>Selamat datang di halaman sederhana.</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const toValue = params.get('to');
+
+    const greetingElement = document.getElementById('greeting');
+
+    if (toValue) {
+      greetingElement.textContent = `Halo, ${decodeURIComponent(toValue)}!`;
+    } else {
+      greetingElement.textContent = 'Halo, teman!';
+    }
+  </script>
+
+</body>
+</html>
