@@ -2,97 +2,267 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Undangan Pernikahan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Fulan & Fulanah</title>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="css/animate.min.css"/>
+  <!-- Bootstrap Icons -->
+  <link href="css/bootstrap-icons.css" rel="stylesheet">
+
   <style>
     body {
+      background: #E4DDD7;
+      font-family: 'Marcellus', serif;
       margin: 0;
       padding: 0;
-      font-family: 'Georgia', serif;
-      background: linear-gradient(to bottom, #fff8f0, #ffe0e0);
-      color: #333;
-      text-align: center;
     }
-    .container {
-      max-width: 700px;
-      margin: auto;
-      padding: 40px 20px;
+    .slide {
+      display: none;
+      min-height: 100vh;
+      /* padding: 20px; */
+      background: url('images/bg.webp') center/cover no-repeat;
     }
-    .header {
-      margin-bottom: 40px;
+    .slide.active {
+      display: block;
     }
-    .header h1 {
-      font-size: 40px;
-      margin: 0;
-      color: #c2185b;
+    .frame img {
+      width: 100%;
     }
-    .header p {
-      font-size: 18px;
-      margin-top: 10px;
-      font-style: italic;
+    .btn-invite {
+      background: #AE7400;
+      border: none;
+      color: white;
+      padding: 10px 25px;
+      border-radius: 25px;
     }
-    .invitation {
-      font-size: 20px;
-      margin-top: 40px;
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #E4DDD7;
+      border-top: 1px solid #b8b0a3;
+      display: flex;
+      justify-content: space-around;
+      padding: 6px 0;
+      z-index: 1000;
     }
-    .bride-groom {
-      font-size: 24px;
-      margin: 30px 0;
-      color: #d81b60;
-    }
-    .date-location {
-      margin-top: 20px;
-      font-size: 18px;
-    }
-    .footer {
-      margin-top: 60px;
-      font-size: 14px;
+    .bottom-nav button {
+      background: none;
+      border: none;
+      font-size: 12px;
       color: #777;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .bottom-nav button.active {
+      color: #AE7400;
+      font-weight: bold;
+    }
+    .bottom-nav button i {
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+    /* Musik player */
+    .music-player {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: #AE7400;
+      color: white;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1100;
+      cursor: pointer;
+    }
+    /* Countdown */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    .countdown-item {
+      background: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      min-width: 60px;
+    }
+    .countdown-item .number {
+      font-size: 20px;
+      font-weight: bold;
+      color: #AE7400;
+    }
+    .countdown-item .label {
+      font-size: 12px;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <div class="header">
-      <h1>Undangan Pernikahan</h1>
-      <p>Dengan memohon rahmat dan ridho Allah SWT</p>
+  <!-- 🎵 Musik -->
+  <div class="music-player" onclick="toggleMusic()">
+    <i id="music-icon" class="bi bi-play-fill"></i>
+  </div>
+  <audio id="bg-music" loop>
+    <source src="music/hanya-rindu-andmesh.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Slide 1: Cover -->
+  <div id="cover" class="slide active text-center">
+    <div class="frame">
+      <img src="images/frame-tm.webp" alt="top">
     </div>
-
-    <div class="invitation">
-      <p id="toName">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-
-      <div class="bride-groom">
-        <strong>BANG IRUD &amp; PASANGAN</strong>
-      </div>
-
-      <p>Dengan hormat, kami mengundang Anda untuk hadir dan memberikan doa restu pada acara pernikahan kami.</p>
-
-      <div class="date-location">
-        <p>📅 Minggu, 15 September 2025</p>
-        <p>📍 Gedung Serbaguna Cinta Kasih, Banjarmasin</p>
-      </div>
-
-      <p style="margin-top: 30px;">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
-    </div>
-
-    <div class="footer">
-      Terima kasih atas doa dan restunya 🙏
+    <p class="mt-4">19 . 08 . 22</p>
+    <img src="images/illustration.webp" class="w-50">
+    <h2 class="mt-3" style="color:#AE7400;">Fulan & Fulanah</h2>
+    <p>Kepada Yth;<br>Bapak/Ibu/Saudara/i</p>
+    <p><b>Nama Tamu</b></p>
+    <button class="btn-invite" onclick="showSlide('opening')">Buka Undangan</button>
+    <div class="frame mt-4">
+      <img src="images/frame-bm.webp" alt="bottom">
     </div>
   </div>
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const to = params.get("to");
-    const target = document.getElementById("toName");
+  <!-- Slide 2: Opening -->
+  <div id="opening" class="slide text-center">
+    <div class="frame">
+      <img src="images/frame-tm.webp" alt="top">
+    </div>
+    <p class="mt-4">03 . 05 . 22</p>
+    <img src="images/character.webp" class="w-75">
+    <h3 class="mt-3" style="color:#AE7400;">The Wedding of<br>Fulan & Fulanah</h3>
+    <div class="frame mt-4">
+      <img src="images/frame-bm.webp" alt="bottom">
+    </div>
+  </div>
 
-    if (to) {
-      const namaTamu = decodeURIComponent(to).replace(/\+/g, ' ');
-      target.textContent = `Kepada Yth. Bapak/Ibu/Saudara/i ${namaTamu}`;
+  <!-- Slide 3: Bride -->
+  <div id="bride" class="slide text-center">
+    <h3 style="color:#AE7400;">Mempelai Wanita</h3>
+    <p>Putri dari:<br>Ujang Suryana & Imas Yuhana</p>
+    <img src="images/female.webp" class="w-75 rounded-circle border border-3 border-dark">
+  </div>
+
+  <!-- Slide 4: Groom -->
+  <div id="groom" class="slide text-center">
+    <h3 style="color:#AE7400;">Mempelai Pria</h3>
+    <p>Putra dari:<br>Ujang Suryana & Imas Yuhana</p>
+    <img src="images/male.webp" class="w-75 rounded-circle border border-3 border-dark">
+  </div>
+
+  <!-- Slide 5: Waktu + Countdown -->
+  <div id="waktu" class="slide text-center">
+    <h3 style="color:#AE7400;">Akad Nikah</h3>
+    <p>Minggu, 13 November 2025<br>Pukul 08.00 WITA</p>
+    <h3 style="color:#AE7400;">Resepsi</h3>
+    <p>Minggu, 13 November 2025<br>Pukul 10.00 WITA</p>
+
+    <!-- Countdown -->
+    <div class="countdown" id="countdown">
+      <div class="countdown-item"><div class="number" id="days">0</div><div class="label">Hari</div></div>
+      <div class="countdown-item"><div class="number" id="hours">0</div><div class="label">Jam</div></div>
+      <div class="countdown-item"><div class="number" id="minutes">0</div><div class="label">Menit</div></div>
+      <div class="countdown-item"><div class="number" id="seconds">0</div><div class="label">Detik</div></div>
+    </div>
+  </div>
+
+  <!-- Slide 6: Lokasi -->
+  <div id="lokasi" class="slide text-center">
+    <h3 style="color:#AE7400;">Lokasi Acara</h3>
+    <iframe width="100%" height="300" style="border:0" allowfullscreen
+      src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCpV55KNPo55TuxnDFd_dR3MD0luBrN1Gc&q=-3.403260,114.843165">
+    </iframe>
+    <p class="mt-3">Mercure Nexa Bandung<br>Jl. Supratman No. 66 - 68 Bandung</p>
+  </div>
+
+  <!-- Slide 7: RSVP -->
+  <div id="rsvp" class="slide text-center">
+    <h3 style="color:#AE7400;">Doa & Konfirmasi Kehadiran</h3>
+    <p>"Semoga Allah memberkahimu di waktu bahagia dan susah, dan mengumpulkan kalian dalam kebaikan"</p>
+    <button class="btn btn-primary rounded-pill">Konfirmasi & Kirim Ucapan</button>
+  </div>
+
+  <!-- Slide 8: Gift -->
+  <div id="gift" class="slide text-center">
+    <h3 style="color:#AE7400;">Kirim Hadiah</h3>
+    <p>Doa restu Anda sangat berarti, namun jika ingin memberi hadiah:</p>
+    <p><b>12345678</b><br>BCA - Atas Nama Rekening</p>
+    <p>Atau kirim kado ke:<br>Jl. Wildan Sari 1 No 11 Banjarmasin Barat</p>
+  </div>
+
+  <!-- Slide 9: Protokol -->
+  <div id="protokol" class="slide text-center">
+    <h3 style="color:#AE7400;">Protokol Kesehatan</h3>
+    <div class="row">
+      <div class="col-6">😷 Pakai Masker</div>
+      <div class="col-6">🧼 Cuci Tangan</div>
+      <div class="col-6">🌡️ Cek Suhu</div>
+      <div class="col-6">↔️ Jaga Jarak</div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation -->
+  <div class="bottom-nav">
+    <button onclick="showSlide('cover')" id="nav-cover"><i class="bi bi-house"></i>Cover</button>
+    <button onclick="showSlide('opening')" id="nav-opening"><i class="bi bi-envelope"></i>Opening</button>
+    <button onclick="showSlide('bride')" id="nav-bride"><i class="bi bi-heart"></i>Bride</button>
+    <button onclick="showSlide('groom')" id="nav-groom"><i class="bi bi-person"></i>Groom</button>
+    <button onclick="showSlide('waktu')" id="nav-waktu"><i class="bi bi-calendar"></i>Waktu</button>
+    <button onclick="showSlide('lokasi')" id="nav-lokasi"><i class="bi bi-geo-alt"></i>Lokasi</button>
+    <button onclick="showSlide('rsvp')" id="nav-rsvp"><i class="bi bi-chat-dots"></i>RSVP</button>
+    <button onclick="showSlide('gift')" id="nav-gift"><i class="bi bi-gift"></i>Gift</button>
+    <button onclick="showSlide('protokol')" id="nav-protokol"><i class="bi bi-shield"></i>Protokol</button>
+  </div>
+
+  <script>
+    function showSlide(id) {
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      document.querySelectorAll('.bottom-nav button').forEach(b => b.classList.remove('active'));
+      document.getElementById('nav-' + id).classList.add('active');
     }
+
+    // 🎵 Musik kontrol
+    function toggleMusic() {
+      let music = document.getElementById("bg-music");
+      let icon = document.getElementById("music-icon");
+      if (music.paused) {
+        music.play();
+        icon.classList.remove("bi-play-fill");
+        icon.classList.add("bi-pause-fill");
+      } else {
+        music.pause();
+        icon.classList.remove("bi-pause-fill");
+        icon.classList.add("bi-play-fill");
+      }
+    }
+
+    // ⏳ Countdown
+    const eventDate = new Date("Nov 13, 2025 08:00:00").getTime();
+    setInterval(function() {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    }, 1000);
   </script>
+
 </body>
 </html>
